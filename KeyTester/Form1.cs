@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 //using System.Windows.Input;
 using Hooks;
-
+//доробити
 namespace KeyTester
 {
    
@@ -140,7 +140,7 @@ namespace KeyTester
                 Array.Resize(ref mouseMovement, i+1);
                 Array.Resize(ref actions, i + 1);
                 //mouseMovement[i] = Cursor.Position;
-                actions[i] = new MousePoint(Cursor.Position.X, Cursor.Position.Y);
+                actions[i] = new MousePoint(Cursor.Position.X, Cursor.Position.Y);//try use object
                 //actions[i].x = Cursor.Position.X;
                 
                 //actions[i].y = Cursor.Position.Y;
@@ -176,7 +176,7 @@ namespace KeyTester
                 leftMouseDown = mouseMovement[j].leftDown;
                 leftMouseUp = mouseMovement[j].leftUp;
 
-                int f = (actions[0] as MousePoint).x;
+                int f = (actions[0] as MousePoint).x;//try use object
 
                 if (leftMouseUp && active)
                 {
@@ -240,7 +240,7 @@ namespace KeyTester
         {
             listBox1.Items.Add(e.Button);
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            //e.Button.
+            
             mouseMovement[i].leftUp = true;
         }
 
@@ -250,6 +250,7 @@ namespace KeyTester
 
             listBox1.Items.Add(e.Button);
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
+            textBox1.Text = e.Button.ToString();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -268,6 +269,8 @@ namespace KeyTester
             this.y = y;
         }
 
+        public MousePoint() { }
+
         public int x;
         public int y;
         public bool leftDown = false;
@@ -279,23 +282,13 @@ namespace KeyTester
     public static class Constants
 
     {
-
         //modifiers
-
         public const int NOMOD = 0x0000;
-
         public const int ALT = 0x0001;
-
         public const int CTRL = 0x0002;
-
         public const int SHIFT = 0x0004;
-
         public const int WIN = 0x0008;
-
- 
-
         //windows message id for hotkey
-
         public const int WM_HOTKEY_MSG_ID = 0x0312;
 
     }
